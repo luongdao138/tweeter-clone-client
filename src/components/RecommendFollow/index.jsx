@@ -21,6 +21,17 @@ const RecommendFollow = () => {
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
 
+  const followUser = (user_id) => {
+    let newList = [...list];
+    newList.forEach((u) => {
+      if (u._id === user_id) {
+        u.isFollow = !u.isFollow;
+      }
+    });
+
+    setList(newList);
+  };
+
   useEffect(() => {
     const getRecommendFollow = async () => {
       setLoading(true);
@@ -50,6 +61,8 @@ const RecommendFollow = () => {
             follower_count={u.followers_count}
             user_photo={u.photo || no_user}
             cover_photo={u.coverPhoto}
+            is_online={u.is_online}
+            handleFollow={followUser}
           />
         );
       })}

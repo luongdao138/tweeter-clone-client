@@ -14,6 +14,18 @@ export const Wrapper = styled(Link)`
     margin-bottom: 15px;
     display: flex;
     align-items: center;
+    position: relative;
+    .online {
+      position: absolute;
+      z-index: 10;
+      display: block;
+      width: 10px;
+      height: 10px;
+      top: -3px;
+      left: 0px;
+      background-color: var(--primary);
+      border-radius: 50%;
+    }
     img {
       width: 40px;
       height: 40px;

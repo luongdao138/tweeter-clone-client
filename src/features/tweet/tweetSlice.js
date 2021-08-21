@@ -33,6 +33,7 @@ const tweetSlice = createSlice({
     },
     add: (state, { payload }) => {
       state.list.unshift(payload);
+      state.pagination.total_results++;
     },
     like: (state, { payload }) => {
       console.log(payload);
@@ -71,6 +72,13 @@ const tweetSlice = createSlice({
     reset: (state) => {
       state.loading = true;
     },
+    online: (state, { payload }) => {
+      state.list.forEach((t) => {
+        if (t.user._id === payload) {
+          t.user.is_online = true;
+        }
+      });
+    },
   },
 
   extraReducers: {
@@ -90,5 +98,6 @@ export const {
   save,
   reset,
   comment,
+  online,
 } = tweetSlice.actions;
 export default tweetSlice.reducer;

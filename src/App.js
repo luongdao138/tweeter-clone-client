@@ -15,6 +15,7 @@ import ExplorePage from './pages/ExplorePage';
 import BookmarkPage from './pages/BookmarkPage';
 import { useThemeContext } from './context/ThemeContext';
 import { ThemeProvider } from 'styled-components';
+import SocketProvider from './context/SocketContext';
 
 const App = () => {
   const { theme } = useThemeContext();
@@ -22,57 +23,59 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-          <Route path='/' exact>
-            <Layout>
-              <HomePage />
-            </Layout>
-          </Route>
-          <Route path='/explore' exact>
-            <Layout>
-              <ExplorePage />
-            </Layout>
-          </Route>
-          <Route path='/bookmark' exact>
-            <Layout>
-              <BookmarkPage />
-            </Layout>
-          </Route>
-          <Route path='/profile/:id' exact>
-            <Layout>
-              <ProfilePage />
-            </Layout>
-          </Route>
-          <Route path='/tweet/:tweet_id' exact>
-            <Layout>
-              <TweetDetailPage />
-            </Layout>
-          </Route>
-          <Route path='/search' exact>
-            <Layout>
-              <SearchPage />
-            </Layout>
-          </Route>
-          <Route path='/hashtag/:tag' exact>
-            <Layout>
-              <HashTagPage />
-            </Layout>
-          </Route>
-          <Route path='/setting' exact>
-            <Layout>
-              <SettingPage />
-            </Layout>
-          </Route>
-          <Route path='/setting/edit' exact>
-            <Layout>
-              <EditProfilePage />
-            </Layout>
-          </Route>
           <Route path='/login'>
             <LoginPage />
           </Route>
           <Route path='/signup'>
             <SignupPage />
           </Route>
+          <SocketProvider>
+            <Route path='/' exact>
+              <Layout>
+                <HomePage />
+              </Layout>
+            </Route>
+            <Route path='/explore' exact>
+              <Layout>
+                <ExplorePage />
+              </Layout>
+            </Route>
+            <Route path='/bookmark' exact>
+              <Layout>
+                <BookmarkPage />
+              </Layout>
+            </Route>
+            <Route path='/profile/:id' exact>
+              <Layout>
+                <ProfilePage />
+              </Layout>
+            </Route>
+            <Route path='/tweet/:tweet_id' exact>
+              <Layout>
+                <TweetDetailPage />
+              </Layout>
+            </Route>
+            <Route path='/search' exact>
+              <Layout>
+                <SearchPage />
+              </Layout>
+            </Route>
+            <Route path='/hashtag/:tag' exact>
+              <Layout>
+                <HashTagPage />
+              </Layout>
+            </Route>
+            <Route path='/setting' exact>
+              <Layout>
+                <SettingPage />
+              </Layout>
+            </Route>
+            <Route path='/setting/edit' exact>
+              <Layout>
+                <EditProfilePage />
+              </Layout>
+            </Route>
+          </SocketProvider>
         </Switch>
       </Router>
       <GlobalStyle />

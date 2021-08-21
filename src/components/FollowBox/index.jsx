@@ -77,6 +77,7 @@ const FollowBox = ({ open, onClose, type, user_id, display_name }) => {
                         isFollow={u.isFollow}
                         follower_count={u.followers_count}
                         user_photo={u.photo}
+                        is_online={u.is_online}
                       />
                     );
                   })}

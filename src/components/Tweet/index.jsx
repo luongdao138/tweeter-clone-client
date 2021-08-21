@@ -36,6 +36,7 @@ const Tweet = ({
   retweetedBy,
   tags,
   can_reply,
+  is_online,
 }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -164,7 +165,8 @@ const Tweet = ({
       )}
       <Wrapper>
         <div className='user'>
-          <Link to={`/profile/${user_id}`}>
+          <Link to={`/profile/${user_id}`} className='user-image'>
+            {is_online && <span className='online'></span>}
             <img src={user_photo || no_user} alt='' />
           </Link>
           <div>

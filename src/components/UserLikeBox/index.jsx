@@ -71,6 +71,7 @@ const UserLikeBox = ({ open, onClose, fetchMore, title }) => {
                           isFollow={u.isFollow}
                           follower_count={u.followers_count}
                           user_photo={u.photo}
+                          is_online={u.is_online}
                         />
                       );
                     })}

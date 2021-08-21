@@ -39,6 +39,13 @@ const userSlice = createSlice({
         user.followers_count--;
       }
     },
+    online: (state, { payload }) => {
+      state.list.forEach((u) => {
+        if (u._id === payload) {
+          u.is_online = true;
+        }
+      });
+    },
     reset: (state) => {
       state.loading = true;
     },
@@ -47,6 +54,12 @@ const userSlice = createSlice({
   extraReducers: {},
 });
 
-export const { fetch_fulfilled, fetch_request, fetch_more, reset, follow } =
-  userSlice.actions;
+export const {
+  fetch_fulfilled,
+  fetch_request,
+  fetch_more,
+  reset,
+  follow,
+  online,
+} = userSlice.actions;
 export default userSlice.reducer;

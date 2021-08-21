@@ -75,6 +75,7 @@ const Timeline = ({ fetchMoreUrl, options }) => {
               tags={tweet.tags}
               like_count={tweet.liked_count}
               can_reply={tweet.can_reply}
+              is_online={tweet.user.is_online}
             />
           );
         })}

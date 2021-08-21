@@ -10,6 +10,8 @@ import GifBox from '../GifBox';
 import axiosClient from '../../api/axiosClient';
 import { add } from '../../features/tweet/tweetSlice';
 import { Link } from 'react-router-dom';
+import { useSocketContext } from '../../context/SocketContext';
+
 const AddTweet = () => {
   const { user } = useSelector((state) => state.auth);
   const [openReply, setOpenReply] = useState(false);
@@ -25,7 +27,7 @@ const AddTweet = () => {
   const [tags, setTags] = useState([]);
   const [tag, setTag] = useState('');
   const dispatch = useDispatch();
-
+  const { socket } = useSocketContext();
   const handleReset = () => {
     setTitle('');
     setImage(null);
@@ -100,7 +102,9 @@ const AddTweet = () => {
       res.data.isLoggedInUserRetweeted = false;
       res.data.isLoggedInUserSaved = false;
       res.data.retweetedBy = false;
+      res.data.is_online = true;
       dispatch(add(res.data));
+      socket?.emit('new_tweet', { tweet: res.data });
       handleReset();
     } catch (error) {
       console.log(error);
@@ -129,7 +133,8 @@ const AddTweet = () => {
       <p className='title'>Tweet something</p>
       <div className='divider'></div>
       <div className='tweet-wrapper'>
-        <Link to={`/profile/${user._id}`}>
+        <Link to={`/profile/${user._id}`} className='image-link'>
+          {user.is_online && <span className='online'></span>}
           <img src={user.photo || no_user} className='user-image' alt='' />
         </Link>
         <div className='more'>

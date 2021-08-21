@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import SmallScreenMenu from '../components/SmallScreenMenu';
 import useFetchUser from '../hooks/useFetchUser';
 import LoadingPage from './LoadingPage';
+
 const Layout = ({ children }) => {
   const { loading } = useFetchUser();
 

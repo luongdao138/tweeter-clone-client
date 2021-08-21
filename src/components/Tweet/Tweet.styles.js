@@ -29,6 +29,21 @@ export const Wrapper = styled.div`
   .user {
     display: flex;
     margin-bottom: 10px;
+
+    .user-image {
+      position: relative;
+      .online {
+        position: absolute;
+        z-index: 10;
+        display: block;
+        width: 10px;
+        height: 10px;
+        top: -3px;
+        left: -3px;
+        background-color: var(--primary);
+        border-radius: 50%;
+      }
+    }
     img {
       width: 42px;
       height: 42px;

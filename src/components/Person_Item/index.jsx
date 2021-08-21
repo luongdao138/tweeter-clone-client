@@ -14,6 +14,8 @@ const Person_Item = ({
   follower_count,
   isFollow,
   bio,
+  handleFollow,
+  is_online,
 }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -23,7 +25,12 @@ const Person_Item = ({
 
     try {
       await followUser(user_id);
-      dispatch(follow(user_id));
+
+      if (handleFollow) {
+        handleFollow(user_id);
+      } else {
+        dispatch(follow(user_id));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +39,7 @@ const Person_Item = ({
   return (
     <Wrapper to={`/profile/${user_id}`}>
       <div className='info'>
+        {is_online && <span className='online'></span>}
         <img src={user_photo || no_user} alt='' />
         <div className='right'>
           <p className='username'>{display_name}</p>
