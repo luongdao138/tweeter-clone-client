@@ -67,7 +67,7 @@ export const Wrapper = styled.div`
         max-height: 300px;
         object-fit: cover;
         margin-top: 10px;
-        margin-bottom: -10px;
+        /* margin-bottom: -10px; */
       }
     }
 
