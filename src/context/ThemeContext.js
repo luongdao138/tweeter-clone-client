@@ -4,7 +4,7 @@ import { themes, primary_colors } from '../helpers/theme';
 
 const ThemeContext = createContext();
 let defaultTheme = themes.find((x) => x.name === 'Guava');
-const defaultColor = primary_colors[2];
+const defaultColor = primary_colors[0];
 defaultTheme.colors.component.primary = defaultColor;
 // const defaultTheme = themes.find((x) => x.name === 'Luong');
 const ThemeProvider = ({ children }) => {
