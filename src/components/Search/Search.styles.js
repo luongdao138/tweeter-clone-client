@@ -13,6 +13,10 @@ export const Wrapper = styled.form`
     margin-right: 10px;
     font-size: 20px;
     color: var(--text-slight-pri);
+
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
   }
 
   input {
@@ -40,7 +44,8 @@ export const Wrapper = styled.form`
     padding: 6px 15px;
 
     @media (max-width: 400px) {
-      padding: 4px 10px;
+      padding: 4px 5px;
+      font-size: 10px;
     }
   }
 `;

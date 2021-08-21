@@ -18,6 +18,7 @@ const authSlice = createSlice({
       state.user = {};
       localStorage.removeItem('tweeter_token');
       window.location = 'https://tender-banach-9ccbfb.netlify.app/login';
+      // window.location = 'http://localhost:3000/login';
     },
   },
   extraReducers: {},
