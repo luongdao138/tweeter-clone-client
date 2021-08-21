@@ -41,6 +41,19 @@ const GlobalStyle = createGlobalStyle`
     li {
      list-style: none;
     }
+
+    ::-webkit-scrollbar{
+       width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background-color: var(--text-light-pri);
+      border-radius: 30px;
+    }
+
+    ::-webkit-scrollbar-track{
+
+    }
 `;
 
 export const Wrapper = styled.div`

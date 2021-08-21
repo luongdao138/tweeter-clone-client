@@ -7,6 +7,8 @@ import { online as onlineAuth } from '../features/auth/authSlice';
 import { online as onlineUser } from '../features/user/userSlice';
 import { add, online as onlineTweet } from '../features/tweet/tweetSlice';
 import { useLocation } from 'react-router';
+import { add_nof } from '../features/notification/notificationSlice';
+import { add_nof as add_nof_auth } from '../features/auth/authSlice';
 
 const SocketContext = createContext();
 
@@ -42,6 +44,11 @@ const SocketProvider = ({ children }) => {
         if (location.pathname === '/') {
           dispatch(add(tweet));
         }
+      });
+
+      socket.on('add_nof', ({ newNotification }) => {
+        dispatch(add_nof(newNotification));
+        dispatch(add_nof_auth());
       });
     }
   }, [socket, dispatch]);

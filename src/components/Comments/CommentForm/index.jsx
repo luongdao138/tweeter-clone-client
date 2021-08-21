@@ -8,7 +8,9 @@ import { add } from '../../../features/comment/commentSlice';
 import { comment } from '../../../features/tweet/tweetSlice';
 import GifBox from '../../GifBox';
 import { Wrapper } from './CommentForm.styles';
-const CommentForm = ({ tweet_id }) => {
+import { useSocketContext } from '../../../context/SocketContext';
+
+const CommentForm = ({ tweet_id, isOwn, sender, receiver }) => {
   const fileRef = useRef();
   const [content, setContent] = useState('');
   const [file, setFile] = useState(null);
@@ -18,6 +20,7 @@ const CommentForm = ({ tweet_id }) => {
   const [addLoading, setAddLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { socket } = useSocketContext();
 
   const addComment = () => {
     dispatch(comment(tweet_id));
@@ -47,6 +50,14 @@ const CommentForm = ({ tweet_id }) => {
       setAddLoading(false);
       addComment();
       dispatch(add(data));
+      if (!isOwn) {
+        socket?.emit('add_nof', {
+          type: 'COMMENT',
+          tweet_id,
+          sender,
+          receiver,
+        });
+      }
     } catch (error) {
       console.log(error);
       setAddLoading(false);

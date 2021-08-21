@@ -4,20 +4,36 @@ import Tweeter from '../../assets/tweeter.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import Menu from '../NavMenu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import no_user from '../../assets/no_user.png';
+import { MdNotifications } from 'react-icons/md';
+import NotificationModal from '../NotificationModal';
+import { resetNotifications } from '../../api/notification';
+import { reset_nof } from '../../features/auth/authSlice';
+
 const Navbar = () => {
   const buttonRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedPage, setSelectedPage] = useState('/');
   const location = useLocation();
+  const [openNotification, setOpenNotification] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   useEffect(() => {
     setSelectedPage(location.pathname);
   }, [location]);
 
+  const handleResetNotifications = async () => {
+    await resetNotifications();
+    dispatch(reset_nof());
+  };
+
   return (
     <Wrapper>
+      <NotificationModal
+        open={openNotification}
+        onClose={() => setOpenNotification(false)}
+      />
       <Content>
         <Link to='/'>
           <img src={Tweeter} alt='' />
@@ -53,6 +69,20 @@ const Navbar = () => {
               }}
             />
           )}
+          <span
+            className='not'
+            onClick={() => {
+              handleResetNotifications();
+              setOpenNotification(true);
+            }}
+          >
+            <MdNotifications />
+            {user.notifications_count > 0 && (
+              <span className='badge'>
+                <span>{user.notifications_count}</span>
+              </span>
+            )}
+          </span>
         </Button>
       </Content>
     </Wrapper>

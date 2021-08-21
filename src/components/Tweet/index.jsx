@@ -18,6 +18,7 @@ import { getTweetActionUsers } from '../../api/user';
 import CommentForm from '../Comments/CommentForm';
 import UserLikeBox from '../UserLikeBox';
 import { useThemeContext } from '../../context/ThemeContext';
+import { useSocketContext } from '../../context/SocketContext';
 const Tweet = ({
   user_id,
   user_photo,
@@ -47,6 +48,7 @@ const Tweet = ({
   const [openComments, setOpenComments] = useState(false);
   const [type, setType] = useState(null);
   const [canLoggedInUserReply, setCanLoggedInUserReply] = useState(false);
+  const { socket } = useSocketContext();
 
   useEffect(() => {
     if (user_id) {
@@ -112,6 +114,14 @@ const Tweet = ({
       await axiosClient().post('/tweets/like', {
         tweet_id,
       });
+      if (user._id !== user_id && !isLoggedInUserLike) {
+        socket?.emit('add_nof', {
+          type: 'LIKE',
+          tweet_id,
+          sender: user._id,
+          receiver: user_id,
+        });
+      }
       dispatch(like(tweet_id));
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -258,7 +268,12 @@ const Tweet = ({
         </div>
         {openComments && (
           <div style={{ marginTop: '10px' }}>
-            <CommentForm tweet_id={tweet_id} />
+            <CommentForm
+              sender={user._id}
+              receiver={user_id}
+              tweet_id={tweet_id}
+              isOwn={user_id === user._id}
+            />
           </div>
         )}
       </Wrapper>

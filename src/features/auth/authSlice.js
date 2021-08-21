@@ -17,6 +17,16 @@ const authSlice = createSlice({
     online: (state) => {
       state.user.is_online = true;
     },
+    add_nof: (state) => {
+      if (state.user.notifications_count) {
+        state.user.notifications_count++;
+      } else {
+        state.user.notifications_count = 1;
+      }
+    },
+    reset_nof: (state) => {
+      state.user.notifications_count = 0;
+    },
     logout: (state) => {
       state.user = {};
       localStorage.removeItem('tweeter_token');
@@ -27,5 +37,6 @@ const authSlice = createSlice({
   extraReducers: {},
 });
 
-export const { login_fulfilled, logout, update, online } = authSlice.actions;
+export const { login_fulfilled, logout, update, online, add_nof, reset_nof } =
+  authSlice.actions;
 export default authSlice.reducer;

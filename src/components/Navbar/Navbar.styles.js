@@ -50,6 +50,34 @@ export const MenuLink = styled.li`
 
 export const Button = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+
+  .not {
+    margin-left: 15px;
+    cursor: pointer;
+    transform: translateY(3px);
+    position: relative;
+    svg {
+      font-size: 20px;
+      color: var(--text-pri);
+    }
+    .badge {
+      position: absolute;
+      font-size: 10px;
+      color: var(--text-pri);
+      background-color: var(--primary);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: flex;
+      top: -6px;
+      left: 9px;
+      span {
+        margin: auto;
+      }
+    }
+  }
   .button {
     background-color: transparent;
     display: flex;
