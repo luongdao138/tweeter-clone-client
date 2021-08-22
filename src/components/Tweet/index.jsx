@@ -165,7 +165,7 @@ const Tweet = ({
           onClose={() => setType(null)}
           open={type !== null}
           title={
-            type === 'save'
+            type === 'saved'
               ? 'Saved by'
               : type === 'like'
               ? 'Liked by'
