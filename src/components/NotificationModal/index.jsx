@@ -26,6 +26,9 @@ const convertNotifications = (n) => {
       break;
     case 'COMMENT':
       text = `${n.sender.display_name} commented on your tweet!`;
+    case 'LIKE_COMMENT':
+      text = `${n.sender.display_name} liked your comment`;
+      break;
     default:
       break;
   }

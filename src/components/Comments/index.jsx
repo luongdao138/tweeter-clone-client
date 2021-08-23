@@ -109,6 +109,7 @@ const Comments = ({ tweet_id }) => {
                   user_id={comment.user._id}
                   liked_count={comment.liked_count}
                   user_photo={comment.user.photo}
+                  tweet_id={comment.tweet}
                 />
               );
               // </InfiniteScroll>

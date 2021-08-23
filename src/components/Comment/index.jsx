@@ -11,6 +11,7 @@ import { fetch_fulfilled, fetch_request } from '../../features/user/userSlice';
 import { useSelector } from 'react-redux';
 import UserLikeBox from '../UserLikeBox';
 import { useThemeContext } from '../../context/ThemeContext';
+import { useSocketContext } from '../../context/SocketContext';
 const Comment = ({
   user_id,
   display_name,
@@ -21,8 +22,11 @@ const Comment = ({
   isLiked,
   liked_count,
   comment_id,
+  tweet_id,
 }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { socket } = useSocketContext();
   const { theme } = useThemeContext();
   const [open, setOpen] = useState(false);
   const {
@@ -33,6 +37,14 @@ const Comment = ({
     try {
       await likeComment(comment_id);
       dispatch(like(comment_id));
+      if (user_id !== user._id) {
+        socket?.emit('add_nof', {
+          type: 'LIKE_COMMENT',
+          sender: user._id,
+          receiver: user_id,
+          tweet_id,
+        });
+      }
     } catch (error) {
       console.log(error);
     }

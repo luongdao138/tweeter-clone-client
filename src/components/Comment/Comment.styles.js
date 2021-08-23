@@ -86,6 +86,10 @@ export const Wrapper = styled.div`
           font-size: 18px;
           margin-right: 4px;
         }
+
+        @media (max-width: 500px) {
+          font-size: 10px;
+        }
       }
     }
   }

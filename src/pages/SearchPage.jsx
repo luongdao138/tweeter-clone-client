@@ -20,6 +20,7 @@ import {
 import SpinnerFc from '../components/Spinner';
 import Timeline from '../components/Timeline';
 import no_user from '../assets/no_user.png';
+import { Title } from '../components/UserLikeBox/UserLikeBox.styles';
 
 const filterOptions = [
   {
@@ -148,9 +149,7 @@ const SearchPage = () => {
                   })}
                 </InfiniteScroll>
               ) : (
-                <p style={{ fontWeight: 500, fontSize: '14px' }}>
-                  No users found!
-                </p>
+                <Title>No users found!</Title>
               )}
             </SearchContainer>
           )
@@ -164,9 +163,7 @@ const SearchPage = () => {
           />
         ) : (
           <SearchContainer>
-            <p style={{ fontWeight: 500, fontSize: '14px' }}>
-              No tweets found!
-            </p>
+            <Title>No tweets found!</Title>
           </SearchContainer>
         )}
         {/* </InfiniteScroll> */}
