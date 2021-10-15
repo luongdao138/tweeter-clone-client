@@ -9,6 +9,9 @@ export const Wrapper = styled(Link)`
   border-bottom: 1px solid #8282822e;
   &:last-child {
     border-bottom: none;
+    .info {
+      margin-bottom: 0;
+    }
   }
   .info {
     margin-bottom: 15px;

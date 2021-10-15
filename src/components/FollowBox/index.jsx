@@ -52,7 +52,7 @@ const FollowBox = ({ open, onClose, type, user_id, display_name }) => {
   return open
     ? ReactDOM.createPortal(
         <Wrapper>
-          <Content ref={ref}>
+          <Content id='scrollableDiv' ref={ref}>
             <Title>
               {display_name}{' '}
               {type === 'following' ? 'is following' : "'s followers"}
@@ -64,8 +64,9 @@ const FollowBox = ({ open, onClose, type, user_id, display_name }) => {
                 <InfiniteScroll
                   dataLength={list.length}
                   hasMore={list.length < total_results}
-                  loader={<Loading />}
+                  loader={<p className='loading-message'>Loading...</p>}
                   next={fetchMoreUser}
+                  scrollableTarget='scrollableDiv'
                 >
                   {list.map((u) => {
                     return (

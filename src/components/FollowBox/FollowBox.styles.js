@@ -21,6 +21,15 @@ export const Content = styled.div`
   z-index: 200;
   border-radius: 8px;
   padding: 15px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  .loading-message {
+    color: var(--text-pri);
+    font-size: 12px;
+    font: 500;
+    margin-top: 10px;
+  }
 `;
 
 export const Title = styled.p`
