@@ -30,8 +30,10 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = {};
       localStorage.removeItem('tweeter_token');
-      window.location = 'https://tender-banach-9ccbfb.netlify.app/login';
-      // window.location = 'http://localhost:3000/login';
+      window.location =
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3000/login'
+          : 'https://tender-banach-9ccbfb.netlify.app/login';
     },
   },
   extraReducers: {},

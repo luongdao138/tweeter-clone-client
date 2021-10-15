@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-export const backendUrl = 'https://luong-tweeter-clone.herokuapp.com';
-// export const backendUrl = 'http://localhost:5000';
+export const backendUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : 'https://luong-tweeter-clone.herokuapp.com';
 
 const axiosClient = () =>
   axios.create({

@@ -17,4 +17,6 @@ export const store = configureStore({
     comment: commentSlice,
     notification: notificationSlice,
   },
+  devTools:
+    process.env.NODE_ENV === 'development' && typeof window !== 'undefined',
 });
