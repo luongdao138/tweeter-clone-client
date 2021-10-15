@@ -23,9 +23,15 @@ export const Content = styled.div`
   padding: 15px;
 
   .person-container {
-    max-height: 350px;
+    max-height: 80vh;
     overflow-y: auto;
     padding-right: 10px;
+    .loading-message {
+      color: var(--text-pri);
+      font-size: 12px;
+      font: 500;
+      margin-top: 10px;
+    }
   }
 `;
 

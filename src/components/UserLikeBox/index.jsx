@@ -57,7 +57,7 @@ const UserLikeBox = ({ open, onClose, fetchMore, title }) => {
                   <InfiniteScroll
                     dataLength={list.length}
                     hasMore={list.length < total_results}
-                    loader={<Loading />}
+                    loader={<p className='loading-message'>Loading...</p>}
                     next={fetchMoreUser}
                     scrollableTarget='scrollableDiv'
                   >
